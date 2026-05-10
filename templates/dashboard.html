@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare AI</title>
+    <!-- This is the correct Flask way to link CSS -->
+    <link rel="stylesheet" href="/static/style.css?v=1.0">
+</head>
+<body>
+    <div class="container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="MedCare Logo" class="logo">
+    <h2>MedCare AI Consultant</h2>
+     <a href="index.html" ><button class="logout-btn" >Logout</button></a>
+      
+    
+    <form action="/predict" method="POST">
+        <label class="question-label">What would you like to check?</label>
+        <select name="disease_choice" id="disease_choice" onchange="updateFields()">
+            <option value="diabetes">Diabetes Screening</option>
+            <option value="heart"> Heart Analysis</option>
+            <option value="cancer">Possible Cancer Risk</option>
+        </select>
+
+        <div id="dynamic-questions">
+            <!-- Questions for Diabetes (Default) -->
+            <label class="question-label">Are you currently pregnant? (Enter 0 if No/Male)</label>
+            <input type="number" name="preg" value="0">
+
+            <label class="question-label">What is your fasting glucose level?</label>
+            <input type="number" name="glu" placeholder="e.g. 100">
+
+            <label class="question-label">Recent Blood Pressure (Systolic)?</label>
+            <input type="number" name="bp" placeholder="e.g. 120">
+
+            <label class="question-label">What is your BMI?</label>
+            <input type="number" step="0.1" name="bmi" placeholder="e.g. 24.5">
+
+            <label class="question-label">Your Age?</label>
+            <input type="number" name="age" placeholder="Years">
+        </div>
+
+        <button type="submit">Analyze My Health</button>
+       
+    </form>
+
+    {% if prediction %}
+        <div class="result-box {{ status }}">
+            <h3>Result: {{ prediction }}</h3>
+            <p><strong>Recommendation:</strong> {{ advice }}</p>
+        </div>
+    {% endif %}
+    <div class="appointment-box">
+        <h4>📅 Need a Doctor?</h4>
+        <p>Based on your location in <strong>Buea</strong>, we recommend <strong>Buea Regional Hospital</strong> or <strong>Mount Mary Hospital</strong>.</p>
+        <button onclick="window.open('https://www.google.com/maps/search/hospitals+near+me')">Book Appointment Near Me</button>
+    </div>    
+     </div>
+     
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* static/style.css */
+.logo { width: 80px; margin-bottom: 10px; border-radius: 50%; }
+
+/* Professional Dropdown styling */
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.result-box {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+/* Red box for high risk */
+.result-box.positive {
+    background-color: #ffebee;
+    border-left: 5px solid #f44336;
+    color: #c62828;
+}
+
+/* Green box for healthy */
+.result-box.negative {
+    background-color: #e8f5e9;
+    border-left: 5px solid #4caf50;
+    color: #2e7d32;
+}
+
+.question-label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    font-size: 0.9rem;
+}
+/* Import a clean medical font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3498db;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.question-label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #546e7a;
+    font-weight: 400;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Prediction Result Boxes */
+.result-box {
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+    border-radius: 12px;
+    text-align: left;
+    animation: fadeIn 0.5s ease;
+}
+
+.positive {
+    background: #fff5f5;
+    border-left: 6px solid #e74c3c;
+    color: #c0392b;
+}
+
+.negative {
+    background: #f0fff4;
+    border-left: 6px solid #2ecc71;
+    color: #27ae60;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.logout-btn{
+    background: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    margin-top: 0px;
+    width:75px;
+    margin-right: 0px;
+}
+
+.appointment-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: #ebf5fb;
+    border: 1px dashed #3498db;
+    border-radius: 10px;
+}
