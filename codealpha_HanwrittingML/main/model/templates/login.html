@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InkLogic | Secure Login</title>
+    <style>
+        :root {
+            --primary: #10b981; /* Emerald */
+            --bg: #1f2937;      /* Charcoal */
+            --text: #ffffff;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .login-card { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+            width: 100%; 
+            max-width: 350px; 
+            text-align: center; 
+        }
+        .logo { width: 70px; margin-bottom: 1rem; }
+        h2 { color: #1f2937; margin-bottom: 1.5rem; }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 1rem; 
+            border: 1px solid #d1d5db; 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+        }
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            background-color: var(--primary); 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #059669; }
+        .footer-text { font-size: 0.8rem; color: #6b7280; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <img src="/download.png" alt="InkLogic Logo" class="logo">
+        <h2>InkLogic</h2>
+        
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        
+        <button type="button" onclick="handleLogin()">Sign In / Register</button>
+        
+        <p class="footer-text">New users will be registered automatically.</p>
+    </div>
+
+    <script>
+        async function handleLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if (!user || !pass) {
+                alert("Please enter both username and password.");
+                return;
+            }
+
+            try {
+                // Sending data to the /auth route in app.py
+                const response = await fetch('/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.status === "success") {
+                    // This moves the user to the main dashboard (index.html)
+                    window.location.href = "/"; 
+                } else {
+                    alert("Error: " + (result.message || "Invalid Credentials"));
+                }
+            } catch (err) {
+                console.error("Auth Error:", err);
+                alert("Could not connect to the backend server.");
+            }
+        }
+    </script>
+</body>
+</html>
