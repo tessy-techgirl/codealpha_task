@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare AI</title>
+    <!-- This is the correct Flask way to link CSS -->
+    <link rel="stylesheet" href="/static/style.css?v=1.0">
+</head>
+<body>
+    <div class="container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="MedCare Logo" class="logo">
+        <h1>MedCare</h1>
+    <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <hr>
+    <p>New Patient?</p>
+    <form action="/signup" method="POST">
+        <input type="text" name="username" placeholder="Choose Username" required>
+        <input type="password" name="password" placeholder="Choose Password" required>
+        <button type="submit" style="background: #2ecc71;">Create Confidential Account</button>
+    </form>
+</div>
+</body>
+</html>
